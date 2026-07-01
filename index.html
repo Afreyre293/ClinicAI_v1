@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization / SEO Personalizado Internacional -->
+    <title>ClinicAI - Chatbots Médicos con IA | Automatiza Citas y Multiplica tu ROI</title>
+    <meta name="description" content="ClinicAI crea chatbots personalizados con Inteligencia Artificial (Gemini) para consultorios y clínicas. Automatiza la agenda de citas, cobros y el seguimiento activo de pacientes para aumentar tu ROI y retención.">
+    <meta name="keywords" content="medical chatbot, AI clinic assistant, chatbot medico, agenda de citas automatizada, seguimiento de pacientes, Gemini XPrize, healthcare AI assistant, patient follow-up, ROI consultorio">
+    <meta name="author" content="ClinicAI Team">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Language Alternates for International SEO -->
+    <link rel="alternate" hreflang="es" href="https://clinicai.example.com/" />
+    <link rel="alternate" hreflang="en" href="https://clinicai.example.com/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://clinicai.example.com/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://clinicai.example.com/">
+    <meta property="og:title" content="ClinicAI - Chatbots con IA para Consultorios y Clínicas">
+    <meta property="og:description" content="Automatiza citas, cobros y seguimiento de pacientes con chatbots inteligentes diseñados con tecnología Gemini. Calcula tu ROI en tiempo real.">
+    <meta property="og:image" content="https://clinicai.example.com/assets/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://clinicai.example.com/">
+    <meta property="twitter:title" content="ClinicAI - Chatbots con IA para Consultorios y Clínicas">
+    <meta property="twitter:description" content="Automatiza citas, cobros y seguimiento de pacientes con chatbots inteligentes diseñados con tecnología Gemini. Calcula tu ROI en tiempo real.">
+    <meta property="twitter:image" content="https://clinicai.example.com/assets/og-image.jpg">
+
+    <!-- JSON-LD Structured Data for Medical Web Business / Software -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ClinicAI",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "99.00",
+        "priceCurrency": "USD"
+      },
+      "description": "Custom AI chatbots powered by Google Gemini for medical clinics and small offices to automate booking, payments, and patient care follow-ups.",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "124"
+      }
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Bug Fix #15: added defer to avoid blocking initial page render -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body>
+
+    <!-- Gradient Background Highlights -->
+    <div class="gradient-bg-orb orb-1"></div>
+    <div class="gradient-bg-orb orb-2"></div>
+    <div class="gradient-bg-orb orb-3"></div>
+
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span class="logo-icon"><i data-lucide="activity"></i></span>
+                <span class="logo-text">Clinic<span>AI</span></span>
+            </a>
+            <nav class="nav">
+                <!-- Bug Fix #7: added data-nav attributes for reliable i18n targeting -->
+                <a href="#beneficios" class="nav-link" data-nav="beneficios">Beneficios</a>
+                <a href="#simulador" class="nav-link" data-nav="simulador">Simulador</a>
+                <a href="#calculadora" class="nav-link-highlight" data-nav="calculadora">Calcular ROI</a>
+                <a href="#faqs" class="nav-link" data-nav="faqs">Preguntas</a>
+            </nav>
+            <div class="header-actions">
+                <button class="lang-btn" id="langToggle">
+                    <i data-lucide="globe"></i> <span>EN</span>
+                </button>
+                <!-- Bug Fix #8: added id="demoBtn" for reliable JS targeting -->
+                <a href="#contacto" class="btn btn-primary btn-sm" id="demoBtn">Solicitar Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="inicio">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="badge-gemini">
+                        <span class="badge-icon"><i data-lucide="sparkles"></i></span>
+                        <span>Gemini XPrize Nominee Project</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Multiplica la rentabilidad de tu clínica con <span class="text-gradient">Chatbots de IA</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Automatiza la agenda de citas, procesa pagos de forma segura y mantén un seguimiento post-consulta impecable con agentes conversacionales inteligentes entrenados con Gemini.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#calculadora" class="btn btn-primary btn-lg">
+                            <span>Calcula tu Ahorro (ROI)</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                        <a href="#simulador" class="btn btn-secondary btn-lg">
+                            <span>Probar Simulador</span>
+                            <i data-lucide="message-square"></i>
+                        </a>
+                    </div>
+                    <div class="hero-metrics">
+                        <div class="metric-item">
+                            <span class="metric-val">-75%</span>
+                            <span class="metric-lbl">Ausentismo (No-shows)</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-val">24/7</span>
+                            <span class="metric-lbl">Atención Automatizada</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-val">+30%</span>
+                            <span class="metric-lbl">Retención de Pacientes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chatbot Simulator Preview (Visual Sandbox) -->
+                <div class="hero-visual" id="simulador">
+                    <div class="glass-card chat-simulator">
+                        <div class="chat-header">
+                            <div class="bot-avatar">
+                                <i data-lucide="bot"></i>
+                                <span class="status-indicator"></span>
+                            </div>
+                            <div class="chat-header-info">
+                                <h3>Asistente de ClinicAI</h3>
+                                <p>En línea • Gemini Powered</p>
+                            </div>
+                            <div class="chat-actions">
+                                <button class="chat-action-btn" id="resetChatBtn" title="Reiniciar chat">
+                                    <i data-lucide="rotate-ccw"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <!-- Messages will be rendered here dynamically -->
+                        </div>
+                        <div class="chat-input-area">
+                            <!-- Bug Fix #14: input was permanently disabled and non-functional.
+                                 Replaced with a helpful hint since the simulator uses quick-reply buttons. -->
+                            <div class="chat-quick-replies" id="quickReplies">
+                                <!-- Interactive options will load here -->
+                            </div>
+                            <p class="chat-hint"><i data-lucide="mouse-pointer-click"></i> Selecciona una opción de arriba para interactuar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROI Calculator Section -->
+        <section class="section section-roi" id="calculadora">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tagline">Calculadora de Retorno de Inversión</span>
+                    <h2 class="section-title">Mira cuánto dinero recuperas con ClinicAI</h2>
+                    <p class="section-desc">
+                        Ingresa los datos promedio de tu clínica o consultorio y observa el impacto financiero de automatizar tus flujos operativos.
+                    </p>
+                </div>
+
+                <div class="roi-container grid grid-2">
+                    <!-- Calculator Inputs -->
+                    <div class="glass-card roi-card-inputs">
+                        <h3 class="card-title"><i data-lucide="sliders" class="icon-inline"></i> Parámetros de tu clínica</h3>
+                        
+                        <div class="input-group-range">
+                            <div class="range-header">
+                                <label for="numConsultas">Consultas Mensuales</label>
+                                <span class="range-val" id="numConsultasVal">150</span>
+                            </div>
+                            <input type="range" id="numConsultas" min="50" max="1000" step="10" value="150">
+                        </div>
+
+                        <div class="input-group-range">
+                            <div class="range-header">
+                                <label for="costoConsulta">Costo Promedio de Consulta</label>
+                                <span class="range-val" id="costoConsultaVal">$80 USD</span>
+                            </div>
+                            <input type="range" id="costoConsulta" min="20" max="300" step="5" value="80">
+                        </div>
+
+                        <div class="input-group-range">
+                            <div class="range-header">
+                                <label for="noShows">Tasa Actual de Ausentismo (No-shows)</label>
+                                <span class="range-val" id="noShowsVal">18%</span>
+                            </div>
+                            <input type="range" id="noShows" min="5" max="40" step="1" value="18">
+                        </div>
+
+                        <div class="input-group-range">
+                            <div class="range-header">
+                                <label for="horasAdmin">Horas Semanales en Administración</label>
+                                <span class="range-val" id="horasAdminVal">15 hrs</span>
+                            </div>
+                            <input type="range" id="horasAdmin" min="5" max="40" step="1" value="15">
+                        </div>
+                    </div>
+
+                    <!-- Calculator Outputs / Results -->
+                    <div class="glass-card roi-card-results highlight-border">
+                        <h3 class="card-title text-gradient"><i data-lucide="trending-up" class="icon-inline"></i> Ahorro e Ingresos Recuperados</h3>
+                        
+                        <div class="roi-results-grid">
+                            <div class="roi-result-item">
+                                <span class="roi-result-label">Ingresos Recuperados por No-Shows</span>
+                                <span class="roi-result-value" id="savingNoShows">$0.00</span>
+                                <span class="roi-result-sub">Reducimos tu ausentismo al 4% con recordatorios automáticos e interactivos</span>
+                            </div>
+                            
+                            <div class="roi-result-item">
+                                <span class="roi-result-label">Tiempo Administrativo Liberado</span>
+                                <span class="roi-result-value" id="savingTime">0 hrs</span>
+                                <span class="roi-result-sub">Menos llamadas de agendamiento y seguimiento manual de pacientes</span>
+                            </div>
+
+                            <div class="roi-result-item total-saving">
+                                <span class="roi-result-label">Impacto Financiero Mensual Estimado</span>
+                                <span class="roi-result-value text-gradient" id="totalMonthlySaving">$0.00</span>
+                                <span class="roi-result-sub">¡Eso equivale a un retorno de inversión de más del 800%!</span>
+                            </div>
+                        </div>
+
+                        <div class="roi-action">
+                            <a href="#contacto" class="btn btn-primary btn-block">Asegurar mi Prueba Gratuita</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Benefits Section -->
+        <section class="section section-benefits" id="beneficios">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tagline">Características de Alto Impacto</span>
+                    <h2 class="section-title">El poder de Gemini optimizando la salud de tus pacientes y tu negocio</h2>
+                    <p class="section-desc">
+                        Nuestra tecnología está enfocada en tres pilares fundamentales que impactan directamente en tu cuenta de resultados.
+                    </p>
+                </div>
+
+                <div class="grid grid-3">
+                    <!-- Benefit 1 -->
+                    <div class="glass-card benefit-card">
+                        <div class="benefit-icon bg-blue">
+                            <i data-lucide="calendar"></i>
+                        </div>
+                        <h3>Agenda de Citas Inteligente</h3>
+                        <p>Los pacientes agendan, cancelan o reprograman citas directamente desde WhatsApp, Telegram o Web a cualquier hora, sin intervención de tu recepcionista.</p>
+                        <div class="benefit-stat">90% de automatización de agenda</div>
+                    </div>
+
+                    <!-- Benefit 2 -->
+                    <div class="glass-card benefit-card">
+                        <div class="benefit-icon bg-purple">
+                            <i data-lucide="credit-card"></i>
+                        </div>
+                        <h3>Cobros e Integración de Pagos</h3>
+                        <p>Asegura el pago total o el anticipo de consultas a través de pasarelas seguras integradas. Disminuye las cancelaciones de último minuto y mejora el flujo de caja.</p>
+                        <div class="benefit-stat">Reduce pérdidas por cancelaciones vacías</div>
+                    </div>
+
+                    <!-- Benefit 3 -->
+                    <div class="glass-card benefit-card">
+                        <div class="benefit-icon bg-green">
+                            <i data-lucide="heart-pulse"></i>
+                        </div>
+                        <h3>Seguimiento Activo de Pacientes</h3>
+                        <p><strong>El núcleo de nuestro servicio.</strong> El bot contacta al paciente a las 24h, 7 días y 30 días para evaluar síntomas, adherencia al tratamiento y sugerir nuevas visitas periódicas de control.</p>
+                        <div class="benefit-stat">+45% de recompra en consultas de control</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA & Contact Section -->
+        <section class="section section-contact" id="contacto">
+            <div class="container">
+                <div class="glass-card contact-wrapper">
+                    <div class="contact-info">
+                        <h2 class="section-title">¿Listo para transformar tu práctica médica?</h2>
+                        <p>Únete a la fase de pruebas de ClinicAI en el marco del Gemini XPrize. Obtén configuración gratuita y 3 meses sin costo de suscripción básica.</p>
+                        <ul class="benefit-list">
+                            <li><i data-lucide="check-circle" class="icon-success"></i> Configuración del chatbot a la medida de tu especialidad.</li>
+                            <li><i data-lucide="check-circle" class="icon-success"></i> Cumplimiento con estándares HIPAA y protección de datos.</li>
+                            <li><i data-lucide="check-circle" class="icon-success"></i> Integración transparente con tu software médico actual.</li>
+                        </ul>
+                    </div>
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="leadForm">
+                            <div class="form-group">
+                                <label for="name">Nombre del profesional/clínica</label>
+                                <input type="text" id="name" required placeholder="Ej. Dr. Alejandro Gómez">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" required placeholder="ejemplo@clinica.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="specialty">Especialidad Médica</label>
+                                <input type="text" id="specialty" placeholder="Ej. Dermatología, Odontología">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Solicitar Acceso Prioritario</button>
+                            <p class="form-note">Cupos limitados para el programa piloto internacional.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section class="section section-faqs" id="faqs">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Preguntas Frecuentes</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="glass-card faq-item">
+                        <h4>¿Cómo se integra el chatbot con mis sistemas actuales?</h4>
+                        <p>ClinicAI cuenta con integraciones API para los principales softwares de expediente médico y calendarios (Google Calendar, Outlook, Doctoralia, etc.), permitiendo que las citas agendadas se sincronicen en tiempo real.</p>
+                    </div>
+                    <div class="glass-card faq-item">
+                        <h4>¿Cómo ayuda el bot en el seguimiento clínico y tratamiento del paciente?</h4>
+                        <p>Posterior a la consulta, el bot envía cuestionarios interactivos diseñados para el bienestar del paciente (adherencia al tratamiento, efectos secundarios, etc.). Si detecta anomalías o síntomas de alerta, notifica de inmediato al consultorio.</p>
+                    </div>
+                    <div class="glass-card faq-item">
+                        <h4>¿Los datos de mis pacientes están seguros?</h4>
+                        <p>Absolutamente. Encriptamos de extremo a extremo toda la información de salud del paciente y estamos alineados con las regulaciones internacionales de seguridad clínica (HIPAA/GDPR).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="logo-icon"><i data-lucide="activity"></i></span>
+                    <span class="logo-text">Clinic<span>AI</span></span>
+                </a>
+                <p>Tecnología de Inteligencia Artificial que conecta clínicas y pacientes con un propósito de salud y eficiencia económica.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <a href="#beneficios">Beneficios</a>
+                <a href="#simulador">Simulador</a>
+                <a href="#calculadora">Calculadora ROI</a>
+            </div>
+            <div class="footer-info">
+                <h4>Gemini XPrize Entry</h4>
+                <p>Desarrollado para la competencia global de innovación de Google Gemini.</p>
+                <div class="socials">
+                    <a href="#"><i data-lucide="globe"></i></a>
+                    <a href="#"><i data-lucide="github"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 ClinicAI. Todos los derechos reservados. Diseñado para un impacto global de salud digital.</p>
+        </div>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
