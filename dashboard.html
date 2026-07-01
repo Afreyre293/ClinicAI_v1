@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClinicAI - Panel de Control de Clientes</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+<body class="dashboard-body">
+
+    <!-- Gradient Background Highlights -->
+    <div class="gradient-bg-orb orb-1"></div>
+    <div class="gradient-bg-orb orb-2"></div>
+    <div class="gradient-bg-orb orb-3"></div>
+
+    <!-- ==========================================
+         pantalla de LOGIN
+         ========================================== -->
+    <div id="loginSection" class="login-section">
+        <div class="login-card glass-card">
+            <div class="login-header text-center">
+                <a href="index.html" class="logo justify-center">
+                    <span class="logo-icon"><i data-lucide="activity"></i></span>
+                    <span class="logo-text">Clinic<span>AI</span></span>
+                </a>
+                <h2>Portal de Socios</h2>
+                <p>Ingresa tus credenciales encriptadas para acceder al panel</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="loginEmail">Correo Electrónico</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="mail" class="input-icon"></i>
+                        <input type="email" id="loginEmail" required placeholder="doctor@clinicai.com">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock" class="input-icon"></i>
+                        <input type="password" id="loginPassword" required placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div id="loginErrorMessage" class="error-message hidden">
+                    <i data-lucide="alert-circle"></i>
+                    <span>Correo o contraseña incorrectos.</span>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="loginSubmitBtn">
+                    <span>Iniciar Sesión</span>
+                    <i data-lucide="log-in"></i>
+                </button>
+            </form>
+            
+            <div class="login-footer text-center">
+                <p>¿No tienes una cuenta? <a href="index.html#contacto">Solicita tu demo aquí</a></p>
+                <div class="security-badge">
+                    <i data-lucide="shield-check" class="icon-success"></i>
+                    <span>Conexión cifrada de extremo a extremo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         PANEL DE CONTROL PRINCIPAL (DASHBOARD)
+         ========================================== -->
+    <div id="dashboardSection" class="dashboard-section hidden">
+        
+        <!-- Barra Lateral (Sidebar) -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"><i data-lucide="activity"></i></span>
+                    <span class="logo-text">Clinic<span>AI</span></span>
+                </a>
+                <span class="badge-role">SaaS Client</span>
+            </div>
+
+            <!-- Navegación -->
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="resumen">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Resumen</span>
+                </button>
+                <button class="nav-item" data-tab="citas">
+                    <i data-lucide="calendar"></i>
+                    <span>Gestión de Citas</span>
+                </button>
+                <button class="nav-item" data-tab="config">
+                    <i data-lucide="bot"></i>
+                    <span>Configurar Bot</span>
+                </button>
+                <button class="nav-item" data-tab="chats">
+                    <i data-lucide="message-square"></i>
+                    <span>Historial de Chats</span>
+                </button>
+                <button class="nav-item" data-tab="whatsapp">
+                    <i data-lucide="message-circle-code"></i>
+                    <span>Canal WhatsApp</span>
+                </button>
+                <button class="nav-item" data-tab="ajustes">
+                    <i data-lucide="settings"></i>
+                    <span>Ajustes / Cuenta</span>
+                </button>
+            </nav>
+
+            <!-- Perfil del Doctor / Clínica en el footer del Sidebar -->
+            <div class="sidebar-profile">
+                <div class="profile-avatar">
+                    <i data-lucide="user"></i>
+                </div>
+                <div class="profile-info">
+                    <h4 id="userProfileName">Dr. Alejandro Gómez</h4>
+                    <p id="userProfileClinic">Clínica Dermacare</p>
+                </div>
+                <button id="logoutBtn" class="logout-btn" title="Cerrar Sesión">
+                    <i data-lucide="log-out"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Contenedor de Contenido Principal -->
+        <main class="dashboard-content">
+            
+            <!-- Barra Superior (Topbar) -->
+            <header class="topbar">
+                <div class="topbar-welcome">
+                    <h1>Hola, <span id="topbarUserName">Dr. Alejandro</span> 👋</h1>
+                    <p>Aquí tienes el estado actual del chatbot médico para hoy.</p>
+                </div>
+                
+                <div class="topbar-actions">
+                    <div class="status-pill bot-active" id="botStatusPill">
+                        <span class="status-indicator-dot"></span>
+                        <span id="botStatusText">Bot Activo</span>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" id="btnQuickAppointment">
+                        <i data-lucide="plus"></i>
+                        <span>Nueva Cita</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- ==============================
+                 TABS DEL CONTENIDO
+                 ============================== -->
+            
+            <!-- 1. PESTAÑA: RESUMEN -->
+            <section class="tab-pane active" id="tab-resumen">
+                <!-- Tarjetas de KPIs -->
+                <div class="kpi-grid">
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Citas Agendadas</span>
+                            <div class="kpi-icon bg-blue"><i data-lucide="calendar"></i></div>
+                        </div>
+                        <div class="kpi-value" id="kpiCitas">28</div>
+                        <div class="kpi-sub">
+                            <span class="text-success"><i data-lucide="trending-up"></i> +12%</span>
+                            <span>este mes</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">No-Shows Evitados</span>
+                            <div class="kpi-icon bg-purple"><i data-lucide="shield-alert"></i></div>
+                        </div>
+                        <div class="kpi-value" id="kpiNoShows">14%</div>
+                        <div class="kpi-sub">
+                            <span class="text-success"><i data-lucide="trending-down"></i> Tasa del 4%</span>
+                            <span>(promedio 18%)</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Ingresos Recuperados</span>
+                            <div class="kpi-icon bg-green"><i data-lucide="dollar-sign"></i></div>
+                        </div>
+                        <div class="kpi-value" id="kpiIngresos">$2,240 USD</div>
+                        <div class="kpi-sub">
+                            <span class="text-success"><i data-lucide="trending-up"></i> +$320</span>
+                            <span>esta semana</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Tiempo Ahorrado</span>
+                            <div class="kpi-icon bg-blue"><i data-lucide="clock"></i></div>
+                        </div>
+                        <div class="kpi-value" id="kpiTiempo">45 hrs</div>
+                        <div class="kpi-sub">
+                            <span class="text-success">75% reducción</span>
+                            <span>en tareas admin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráfico y Actividad Reciente -->
+                <div class="dashboard-grid grid-2">
+                    <!-- Gráfico semanal -->
+                    <div class="glass-card panel-card">
+                        <div class="panel-header">
+                            <h3>Actividad de Agendamiento Semanal</h3>
+                            <span class="panel-sub">Citas confirmadas por la IA en los últimos 7 días</span>
+                        </div>
+                        <div class="chart-container">
+                            <div class="bar-chart">
+                                <div class="chart-bar-wrapper">
+                                    <div class="chart-bar" style="height: 40%"><span>4</span></div>
+                                    <span class="chart-label">Lun</span>
+                                </div>
+                                <div class="chart-bar-wrapper">
+                                    <div class="chart-bar" style="height: 70%"><span>7</span></div>
+                                    <span class="chart-label">Mar</span>
+                                </div>
+                                <div class="chart-bar-wrapper">
+                                    <div class="chart-bar" style="height: 50%"><span>5</span></div>
+                                    <span class="chart-label">Mié</span>
+                                </div>
+                                <div class="chart-bar-wrapper">
+                                    <div class="chart-bar" style="height: 90%"><span>9</span></div>
+                                    <span class="chart-label">Jue</span>
+                                </div>
+                                <div class="chart-bar-wrapper">
+                                    <div class="chart-bar" style="height: 80%"><span>8</span></div>
+                                    <span class="chart-label">Vie</span>
+                                </div>
+                                <div class="chart-bar-wrapper">
+                                    <div class="chart-bar" style="height: 30%"><span>3</span></div>
+                                    <span class="chart-label">Sáb</span>
+                                </div>
+                                <div class="chart-bar-wrapper">
+                                    <div class="chart-bar" style="height: 10%"><span>1</span></div>
+                                    <span class="chart-label">Dom</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Configuración Rápida del Asistente -->
+                    <div class="glass-card panel-card">
+                        <div class="panel-header">
+                            <h3>Estado del Asistente Virtual</h3>
+                            <span class="panel-sub">Acciones rápidas de control de ClinicAI</span>
+                        </div>
+                        <div class="assistant-quick-panel">
+                            <div class="quick-status-item">
+                                <div class="quick-status-info">
+                                    <h4>Integración de WhatsApp</h4>
+                                    <p>Conectado al número del consultorio (+52 ...)</p>
+                                </div>
+                                <span class="status-badge connected">Conectado</span>
+                            </div>
+                            <div class="quick-status-item">
+                                <div class="quick-status-info">
+                                    <h4>Modelo de Lenguaje</h4>
+                                    <p>Google Gemini Flash 1.5</p>
+                                </div>
+                                <span class="status-badge model">Optimizado</span>
+                            </div>
+                            <div class="quick-status-item">
+                                <div class="quick-status-info">
+                                    <h4>Filtro de Seguridad Médica</h4>
+                                    <p>Directiva HIPAA de confidencialidad y alertas de síntomas críticos</p>
+                                </div>
+                                <span class="status-badge active-badge">Activo</span>
+                            </div>
+
+                            <div class="quick-panel-footer">
+                                <button class="btn btn-secondary btn-block" onclick="switchTab('config')">
+                                    <i data-lucide="edit-3"></i>
+                                    <span>Editar Prompt & Instrucciones</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. PESTAÑA: CITAS -->
+            <section class="tab-pane" id="tab-citas">
+                <div class="glass-card panel-card table-panel">
+                    <div class="panel-header-actions">
+                        <div>
+                            <h2>Gestión de Citas</h2>
+                            <p class="panel-sub">Citas gestionadas por la IA e ingresos capturados en tiempo real.</p>
+                        </div>
+                        <button class="btn btn-primary" id="btnAddNewAppointment">
+                            <i data-lucide="plus"></i>
+                            <span>Agregar Cita</span>
+                        </button>
+                    </div>
+
+                    <!-- Filtros de Estado -->
+                    <div class="table-filters">
+                        <button class="filter-btn active" data-filter="all">Todas</button>
+                        <button class="filter-btn" data-filter="Confirmada">Confirmadas</button>
+                        <button class="filter-btn" data-filter="Pendiente">Pendientes</button>
+                        <button class="filter-btn" data-filter="Cancelada">Canceladas</button>
+                    </div>
+
+                    <!-- Tabla de Citas -->
+                    <div class="table-wrapper">
+                        <table class="dashboard-table" id="appointmentsTable">
+                            <thead>
+                                <tr>
+                                    <th>Paciente</th>
+                                    <th>Teléfono</th>
+                                    <th>Especialidad</th>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentsTableBody">
+                                <!-- Filas dinámicas de citas -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. PESTAÑA: CONFIGURAR BOT -->
+            <section class="tab-pane" id="tab-config">
+                <div class="grid grid-2">
+                    <!-- Configuración IA -->
+                    <div class="glass-card panel-card">
+                        <div class="panel-header">
+                            <h2>Personalizar Asistente de IA</h2>
+                            <p class="panel-sub">Entrena y define el tono, especialidad e instrucciones del bot Gemini.</p>
+                        </div>
+
+                        <form id="botConfigForm" class="config-form">
+                            <div class="form-group">
+                                <label for="botNameInput">Nombre del Chatbot</label>
+                                <input type="text" id="botNameInput" required placeholder="Ej. Asistente Dermacare">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="botGreetingInput">Mensaje de Bienvenida (Español)</label>
+                                <textarea id="botGreetingInput" required rows="3" placeholder="Mensaje inicial cuando el paciente saluda..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="botGreetingEnInput">Mensaje de Bienvenida (Inglés)</label>
+                                <textarea id="botGreetingEnInput" required rows="3" placeholder="English welcome message..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="botPromptInput">Instrucciones del Sistema (AI System Prompt)</label>
+                                <span class="input-helper">Estas son las reglas y personalidad con las que operará Gemini.</span>
+                                <textarea id="botPromptInput" required rows="8" placeholder="Eres un asistente médico experto en..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i data-lucide="save"></i>
+                                <span>Guardar Configuración</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Configuración del Consultorio y Parámetros -->
+                    <div class="glass-card panel-card">
+                        <div class="panel-header">
+                            <h2>Parámetros Operativos del Consultorio</h2>
+                            <p class="panel-sub">Define cómo funciona la agenda y cobros automatizados del chatbot.</p>
+                        </div>
+
+                        <form id="clinicConfigForm" class="config-form">
+                            <div class="form-group">
+                                <label for="configPrice">Costo de Consulta Médica (USD)</label>
+                                <input type="number" id="configPrice" min="10" max="1000" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="configHours">Horario de Atención del Consultorio</label>
+                                <input type="text" id="configHours" placeholder="Ej. Lunes a Viernes 9:00 AM - 6:00 PM" required>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label-with-badge">
+                                    <label for="configTemperature">Creatividad de la IA (Temperatura)</label>
+                                    <span class="range-badge" id="tempBadge">0.3</span>
+                                </div>
+                                <span class="input-helper">Valores bajos hacen al bot más preciso y factual. Valores altos le dan flexibilidad lingüística.</span>
+                                <input type="range" id="configTemperature" min="0" max="1" step="0.1">
+                            </div>
+
+                            <div class="form-group inline-toggle">
+                                <div class="toggle-info">
+                                    <label>Estado del Chatbot</label>
+                                    <span class="input-helper">Activa o desactiva la interacción del bot con pacientes.</span>
+                                </div>
+                                <label class="switch-control">
+                                    <input type="checkbox" id="configBotActive" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i data-lucide="save"></i>
+                                <span>Actualizar Parámetros</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. PESTAÑA: HISTORIAL CHATS -->
+            <section class="tab-pane" id="tab-chats">
+                <div class="glass-card panel-card table-panel">
+                    <div class="panel-header">
+                        <h2>Historial de Conversaciones</h2>
+                        <p class="panel-sub">Revisa en tiempo real las conversaciones completas entre tus pacientes y la IA.</p>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Paciente</th>
+                                    <th>Fecha del Chat</th>
+                                    <th>Último Mensaje</th>
+                                    <th>Análisis de Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="chatsTableBody">
+                                <!-- Cargas dinámicas de chats -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. PESTAÑA: CANAL WHATSAPP -->
+            <section class="tab-pane" id="tab-whatsapp">
+                <div class="grid grid-2">
+                    <!-- Configuración API / Canal -->
+                    <div class="glass-card panel-card">
+                        <div class="panel-header">
+                            <h2>Configuración del Canal de WhatsApp</h2>
+                            <p class="panel-sub">Elige el modo de envío y configura las credenciales oficiales de Meta.</p>
+                        </div>
+
+                        <form id="whatsappConfigForm" class="config-form">
+                            <div class="form-group">
+                                <label for="waModeSelect">Modo de Integración</label>
+                                <select id="waModeSelect" class="modal-select">
+                                    <option value="link">Enlace Directo (WhatsApp Web / App - Gratuito)</option>
+                                    <option value="meta">Meta Cloud API (Oficial - WhatsApp Business)</option>
+                                </select>
+                                <span class="input-helper">El modo "Enlace Directo" abrirá una pestaña para enviar el mensaje. El modo "Meta Cloud API" realiza envíos automatizados silenciosos usando los servidores de Meta.</span>
+                            </div>
+
+                            <!-- Campos específicos para Meta API (se muestran/ocultan dinámicamente) -->
+                            <div id="metaFields" class="hidden">
+                                <div class="form-group">
+                                    <label for="waMetaToken">Access Token Temporal o Permanente (Meta Developer)</label>
+                                    <input type="password" id="waMetaToken" placeholder="EAABwBsd3sd...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="waMetaPhoneId">WhatsApp Phone Number ID</label>
+                                    <input type="text" id="waMetaPhoneId" placeholder="109823457193...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="waMetaTemplateName">Nombre de Plantilla Oficial (Template ID)</label>
+                                    <input type="text" id="waMetaTemplateName" placeholder="confirmacion_citas">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="waTemplateConfirm">Plantilla: Confirmación de Citas</label>
+                                <span class="input-helper">Mensaje enviado al paciente al agendar la cita.</span>
+                                <textarea id="waTemplateConfirm" required rows="3" placeholder="Hola {{paciente}}..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="waTemplateFollowup">Plantilla: Seguimiento Post-Consulta (24h)</label>
+                                <span class="input-helper">Mensaje para verificar el estado de salud del paciente.</span>
+                                <textarea id="waTemplateFollowup" required rows="3" placeholder="Hola {{paciente}}..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i data-lucide="save"></i>
+                                <span>Guardar Configuración WhatsApp</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Pruebas de Envío & Guía -->
+                    <div class="glass-card panel-card">
+                        <div class="panel-header">
+                            <h2>Prueba de Envío y Guía de Variables</h2>
+                            <p class="panel-sub">Prueba el canal enviando un mensaje directo a tu celular y conoce las variables dinámicas.</p>
+                        </div>
+
+                        <!-- Prueba de envío -->
+                        <div class="config-form" style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2rem;">
+                            <h3>Prueba del Canal</h3>
+                            <div class="form-group">
+                                <label for="waTestPhone">Número de Teléfono Destinatario (Con código de país)</label>
+                                <input type="tel" id="waTestPhone" placeholder="Ej. +52 55 1234 5678">
+                            </div>
+                            <div class="form-group">
+                                <label for="waTestTemplate">Seleccionar Tipo de Plantilla</label>
+                                <select id="waTestTemplate" class="modal-select">
+                                    <option value="confirm">Confirmación de Cita</option>
+                                    <option value="followup">Seguimiento Post-Consulta</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-secondary" id="btnSendTestWa">
+                                <i data-lucide="send"></i>
+                                <span>Enviar Mensaje de Prueba</span>
+                            </button>
+                        </div>
+
+                        <!-- Guía de Variables -->
+                        <div class="variables-guide">
+                            <h3>Variables Dinámicas</h3>
+                            <p class="panel-sub" style="margin-bottom: 1rem;">Puedes utilizar las siguientes variables dentro de las plantillas de mensaje. La IA las reemplazará automáticamente con la información real del paciente y del consultorio:</p>
+                            <ul class="variable-list" style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                                <li style="display: flex; gap: 0.5rem; font-size: 0.85rem;"><strong style="color: var(--color-primary);">{{paciente}}</strong> Nombre completo</li>
+                                <li style="display: flex; gap: 0.5rem; font-size: 0.85rem;"><strong style="color: var(--color-primary);">{{telefono}}</strong> Teléfono de contacto</li>
+                                <li style="display: flex; gap: 0.5rem; font-size: 0.85rem;"><strong style="color: var(--color-primary);">{{especialidad}}</strong> Servicio médico</li>
+                                <li style="display: flex; gap: 0.5rem; font-size: 0.85rem;"><strong style="color: var(--color-primary);">{{fecha}}</strong> Fecha de la cita</li>
+                                <li style="display: flex; gap: 0.5rem; font-size: 0.85rem;"><strong style="color: var(--color-primary);">{{hora}}</strong> Hora de la cita</li>
+                                <li style="display: flex; gap: 0.5rem; font-size: 0.85rem;"><strong style="color: var(--color-primary);">{{clinica}}</strong> Nombre del consultorio</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. PESTAÑA: AJUSTES -->
+            <section class="tab-pane" id="tab-ajustes">
+                <div class="grid grid-2">
+                    <!-- Configuración del Perfil -->
+                    <div class="glass-card panel-card">
+                        <div class="panel-header">
+                            <h2>Perfil del Consultorio</h2>
+                            <p class="panel-sub">Datos de visualización dentro de tu portal de cliente y reportes.</p>
+                        </div>
+
+                        <form id="profileForm" class="config-form">
+                            <div class="form-group">
+                                <label for="profileDoctorName">Nombre del Profesional</label>
+                                <input type="text" id="profileDoctorName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profileClinicName">Nombre del Consultorio / Clínica</label>
+                                <input type="text" id="profileClinicName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profileSpecialty">Especialidad Médica</label>
+                                <input type="text" id="profileSpecialty" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i data-lucide="save"></i>
+                                <span>Guardar Perfil</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Cambiar Contraseña Encriptada -->
+                    <div class="glass-card panel-card">
+                        <div class="panel-header">
+                            <h2>Seguridad y Contraseña</h2>
+                            <p class="panel-sub">Actualiza tu contraseña. La contraseña se hashea y almacena de forma encriptada en la base de datos.</p>
+                        </div>
+
+                        <form id="passwordForm" class="config-form">
+                            <div class="form-group">
+                                <label for="currentPassword">Contraseña Actual</label>
+                                <input type="password" id="currentPassword" required placeholder="••••••••">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newPassword">Nueva Contraseña</label>
+                                <input type="password" id="newPassword" required placeholder="Mínimo 6 caracteres">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmNewPassword">Confirmar Nueva Contraseña</label>
+                                <input type="password" id="confirmNewPassword" required placeholder="Repite la nueva contraseña">
+                            </div>
+
+                            <div id="passwordMessage" class="toast-message hidden"></div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i data-lucide="key"></i>
+                                <span>Cambiar Contraseña</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ==========================================
+         MODALES DINÁMICOS
+         ========================================== -->
+
+    <!-- Modal 1: Agregar Cita Manual -->
+    <div id="appointmentModal" class="modal-overlay hidden">
+        <div class="modal-card glass-card">
+            <div class="modal-header">
+                <h3>Agendar Nueva Cita</h3>
+                <button class="modal-close" id="btnCloseAppointmentModal"><i data-lucide="x"></i></button>
+            </div>
+            
+            <form id="appointmentForm" class="config-form">
+                <div class="form-group">
+                    <label for="newAppPatient">Nombre del Paciente</label>
+                    <input type="text" id="newAppPatient" required placeholder="Ej. Juan Pérez">
+                </div>
+
+                <div class="form-group">
+                    <label for="newAppPhone">Teléfono de Contacto</label>
+                    <input type="tel" id="newAppPhone" required placeholder="Ej. +52 55 1234 5678">
+                </div>
+
+                <div class="form-group">
+                    <label for="newAppSpecialty">Especialidad / Consulta</label>
+                    <input type="text" id="newAppSpecialty" required placeholder="Ej. Limpieza Dental">
+                </div>
+
+                <div class="modal-form-row">
+                    <div class="form-group">
+                        <label for="newAppDate">Fecha</label>
+                        <input type="date" id="newAppDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newAppTime">Hora</label>
+                        <input type="time" id="newAppTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="newAppStatus">Estado de la Cita</label>
+                    <select id="newAppStatus" required class="modal-select">
+                        <option value="Confirmada">Confirmada</option>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Cancelada">Cancelada</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="btnCancelAppointmentModal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Crear Cita</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: Visualizador de Transcripción de Chat -->
+    <div id="chatModal" class="modal-overlay hidden">
+        <div class="modal-card glass-card chat-log-modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3 id="chatModalPatientName">Chat con Paciente</h3>
+                    <p class="chat-modal-sub" id="chatModalPatientPhone">+52 ...</p>
+                </div>
+                <button class="modal-close" id="btnCloseChatModal"><i data-lucide="x"></i></button>
+            </div>
+
+            <div class="modal-body chat-log-body">
+                <!-- Ventana estilo WhatsApp del chat -->
+                <div class="whatsapp-container">
+                    <div class="whatsapp-header">
+                        <div class="wa-avatar"><i data-lucide="bot"></i></div>
+                        <div class="wa-info">
+                            <h4 id="waBotName">Asistente ClinicAI</h4>
+                            <p>En línea • Historial Registrado</p>
+                        </div>
+                        <div class="wa-badge-compliance">HIPAA Compliant</div>
+                    </div>
+                    
+                    <div class="wa-messages" id="chatModalMessages">
+                        <!-- Mensajes cargados dinámicamente -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="compliance-notice">
+                    <i data-lucide="lock" class="icon-success"></i>
+                    <span>Conversación archivada bajo cumplimiento de seguridad HIPAA. Solo lectura.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de Notificaciones -->
+    <div id="toastNotification" class="toast-notification hidden">
+        <i data-lucide="check-circle" class="toast-icon"></i>
+        <span id="toastMessage">Configuración guardada exitosamente</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="dashboard.js"></script>
+</body>
+</html>

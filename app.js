@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCalculadora: 'Calcular ROI',
             navPreguntas: 'Preguntas',
             navDemo: 'Solicitar Demo',
+            portalClientes: 'Portal Clientes',
             
             // Hero
             heroTitle: 'Multiplica la rentabilidad de tu clínica con <span class="text-gradient">Chatbots de IA</span>',
@@ -95,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navCalculadora: 'Calculate ROI',
             navPreguntas: 'FAQs',
             navDemo: 'Request Demo',
+            portalClientes: 'Client Portal',
             
             // Hero
             heroTitle: 'Multiply your clinic\'s revenue with <span class="text-gradient">AI Chatbots</span>',
@@ -180,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('[data-nav="calculadora"]').textContent = t.navCalculadora;
         document.querySelector('[data-nav="faqs"]').textContent = t.navPreguntas;
         // Bug Fix #8: target Demo button specifically by its ID to avoid fragile class match
+        document.getElementById('clientPortalBtn').querySelector('span').textContent = t.portalClientes;
         document.getElementById('demoBtn').textContent = t.navDemo;
         document.querySelector('#langToggle span').textContent = currentLang === 'es' ? 'EN' : 'ES';
 
@@ -508,6 +511,28 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadNode(nodeKey) {
         // Clear quick replies
         quickRepliesContainer.innerHTML = '';
+        
+        // Load custom config from LocalStorage if available
+        try {
+            const savedConfig = localStorage.getItem('clinicai_config');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                if (config.botName) {
+                    const simulatorTitle = document.querySelector('.chat-header-info h3');
+                    if (simulatorTitle) {
+                        simulatorTitle.textContent = config.botName;
+                    }
+                }
+                if (config.botGreeting && chatData.es && chatData.es.start) {
+                    chatData.es.start.message = config.botGreeting;
+                }
+                if (config.botGreetingEn && chatData.en && chatData.en.start) {
+                    chatData.en.start.message = config.botGreetingEn;
+                }
+            }
+        } catch (e) {
+            console.error('Error loading custom chatbot config in simulator:', e);
+        }
         
         const node = chatData[currentLang][nodeKey];
         if (!node) return;
