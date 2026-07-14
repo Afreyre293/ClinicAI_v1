@@ -82,6 +82,7 @@
                 <a href="#beneficios" class="nav-link" data-nav="beneficios">Beneficios</a>
                 <a href="#simulador" class="nav-link" data-nav="simulador">Simulador</a>
                 <a href="#calculadora" class="nav-link-highlight" data-nav="calculadora">Calcular ROI</a>
+                <a href="#planes" class="nav-link" data-nav="planes">Precios</a>
                 <a href="#faqs" class="nav-link" data-nav="faqs">Preguntas</a>
             </nav>
             <div class="header-actions">
@@ -298,6 +299,49 @@
             </div>
         </section>
 
+        <!-- Pricing Section -->
+        <section class="section section-pricing" id="planes">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tagline" id="pricingTagline">Planes y Precios</span>
+                    <h2 class="section-title" id="pricingTitle">Elige el plan ideal para tu práctica médica</h2>
+                    <p class="section-desc" id="pricingDesc">
+                        Comienza con una prueba y automatiza tus cobros y citas hoy mismo con Stripe de manera segura.
+                    </p>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- Starter Plan -->
+                    <div class="glass-card pricing-card">
+                        <h3 id="planStarterName">Plan Starter</h3>
+                        <p class="plan-desc" id="planStarterDesc">Ideal para consultorios independientes y médicos particulares.</p>
+                        <div class="price">$49<span>/mes</span></div>
+                        <ul class="features-list">
+                            <li><i data-lucide="check" class="icon-success"></i> <span class="feat-txt" data-feat="s1">1 Asistente de IA (Gemini)</span></li>
+                            <li><i data-lucide="check" class="icon-success"></i> <span class="feat-txt" data-feat="s2">Hasta 200 citas mensuales</span></li>
+                            <li><i data-lucide="check" class="icon-success"></i> <span class="feat-txt" data-feat="s3">Seguimiento automático (24h)</span></li>
+                            <li><i data-lucide="check" class="icon-success"></i> <span class="feat-txt" data-feat="s4">Integración con PayPal</span></li>
+                        </ul>
+                        <div id="paypal-button-container-starter" class="paypal-btn-container"></div>
+                    </div>
+
+                    <!-- Pro Plan -->
+                    <div class="glass-card pricing-card popular">
+                        <h3 id="planProName">Plan Professional</h3>
+                        <p class="plan-desc" id="planProDesc">Perfecto para clínicas pequeñas y centros médicos multi-doctor.</p>
+                        <div class="price">$99<span>/mes</span></div>
+                        <ul class="features-list">
+                            <li><i data-lucide="check" class="icon-success"></i> <span class="feat-txt" data-feat="p1">Asistentes de IA ilimitados</span></li>
+                            <li><i data-lucide="check" class="icon-success"></i> <span class="feat-txt" data-feat="p2">Citas mensuales ilimitadas</span></li>
+                            <li><i data-lucide="check" class="icon-success"></i> <span class="feat-txt" data-feat="p3">Seguimiento avanzado (24h, 7d, 30d)</span></li>
+                            <li><i data-lucide="check" class="icon-success"></i> <span class="feat-txt" data-feat="p4">Soporte y Setup personalizado</span></li>
+                        </ul>
+                        <div id="paypal-button-container-pro" class="paypal-btn-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA & Contact Section -->
         <section class="section section-contact" id="contacto">
             <div class="container">
@@ -388,6 +432,8 @@
         </div>
     </footer>
 
+    <!-- PayPal JavaScript SDK (Test mode Sandbox Client ID 'sb') -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZeWVeOV2P_UsN_7Ay01fCU48FclxGWeRXxtVJCTttGY2Keti7TbKudusBwxiTKj0uYVT4hKLoD5vzBr&currency=USD"></script>
     <!-- App JavaScript -->
     <script src="app.js"></script>
 </body>

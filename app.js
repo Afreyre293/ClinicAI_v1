@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navBeneficios: 'Beneficios',
             navSimulador: 'Simulador',
             navCalculadora: 'Calcular ROI',
+            navPlanes: 'Precios',
             navPreguntas: 'Preguntas',
             navDemo: 'Solicitar Demo',
             portalClientes: 'Portal Clientes',
@@ -82,6 +83,27 @@ document.addEventListener('DOMContentLoaded', () => {
             faq3Q: '¿Los datos de mis pacientes están seguros?',
             faq3A: 'Absolutamente. Encriptamos de extremo a extremo toda la información de salud del paciente y estamos alineados con las regulaciones internacionales de seguridad clínica (HIPAA/GDPR).',
             
+            // Pricing Section
+            pricingTagline: 'Planes y Precios',
+            pricingTitle: 'Elige el plan ideal para tu práctica médica',
+            pricingDesc: 'Comienza con una prueba y automatiza tus cobros y citas hoy mismo con Stripe de manera segura.',
+            planStarterName: 'Plan Starter',
+            planStarterDesc: 'Ideal para consultorios independientes y médicos particulares.',
+            planStarterPrice: '$49<span>/mes</span>',
+            featS1: '1 Asistente de IA (Gemini)',
+            featS2: 'Hasta 200 citas mensuales',
+            featS3: 'Seguimiento automático (24h)',
+            featS4: 'Integración con PayPal',
+            btnStarter: 'Adquirir Plan Starter',
+            planProName: 'Plan Professional',
+            planProDesc: 'Perfecto para clínicas pequeñas y centros médicos multi-doctor.',
+            planProPrice: '$99<span>/mes</span>',
+            featP1: 'Asistentes de IA ilimitados',
+            featP2: 'Citas mensuales ilimitadas',
+            featP3: 'Seguimiento avanzado (24h, 7d, 30d)',
+            featP4: 'Soporte y Setup personalizado',
+            btnPro: 'Adquirir Plan Pro',
+
             // Footer
             footerDesc: 'Tecnología de Inteligencia Artificial que conecta clínicas y pacientes con un propósito de salud y eficiencia económica.',
             footerNav: 'Navegación',
@@ -94,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navBeneficios: 'Benefits',
             navSimulador: 'Simulator',
             navCalculadora: 'Calculate ROI',
+            navPlanes: 'Pricing',
             navPreguntas: 'FAQs',
             navDemo: 'Request Demo',
             portalClientes: 'Client Portal',
@@ -162,6 +185,27 @@ document.addEventListener('DOMContentLoaded', () => {
             faq3Q: 'Is patient data completely secure?',
             faq3A: 'Absolutely. We utilize end-to-end encryption for all conversations and conform strictly to global security regulations including HIPAA and GDPR.',
             
+            // Pricing Section
+            pricingTagline: 'Plans & Pricing',
+            pricingTitle: 'Choose the ideal plan for your medical practice',
+            pricingDesc: 'Start with a trial and automate your billing and appointments today with Stripe securely.',
+            planStarterName: 'Starter Plan',
+            planStarterDesc: 'Ideal for independent practices and private doctors.',
+            planStarterPrice: '$49<span>/month</span>',
+            featS1: '1 AI Assistant (Gemini-powered)',
+            featS2: 'Up to 200 appointments/mo',
+            featS3: 'Automated follow-up (24h)',
+            featS4: 'PayPal Integration',
+            btnStarter: 'Get Starter Plan',
+            planProName: 'Professional Plan',
+            planProDesc: 'Perfect for small clinics and multi-doctor health centers.',
+            planProPrice: '$99<span>/month</span>',
+            featP1: 'Unlimited AI Assistants',
+            featP2: 'Unlimited appointments/mo',
+            featP3: 'Advanced follow-up (24h, 7d, 30d)',
+            featP4: 'Personalized Support & Setup',
+            btnPro: 'Get Pro Plan',
+
             // Footer
             footerDesc: 'AI technology bridging the gap between healthcare clinics and patients with care quality and economic efficiency.',
             footerNav: 'Navigation',
@@ -180,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('[data-nav="beneficios"]').textContent = t.navBeneficios;
         document.querySelector('[data-nav="simulador"]').textContent = t.navSimulador;
         document.querySelector('[data-nav="calculadora"]').textContent = t.navCalculadora;
+        document.querySelector('[data-nav="planes"]').textContent = t.navPlanes;
         document.querySelector('[data-nav="faqs"]').textContent = t.navPreguntas;
         // Bug Fix #8: target Demo button specifically by its ID to avoid fragile class match
         document.getElementById('clientPortalBtn').querySelector('span').textContent = t.portalClientes;
@@ -263,6 +308,29 @@ document.addEventListener('DOMContentLoaded', () => {
         faqItems[1].querySelector('p').textContent = t.faq2A;
         faqItems[2].querySelector('h4').textContent = t.faq3Q;
         faqItems[2].querySelector('p').textContent = t.faq3A;
+
+        // Pricing
+        document.getElementById('pricingTagline').textContent = t.pricingTagline;
+        document.getElementById('pricingTitle').textContent = t.pricingTitle;
+        document.getElementById('pricingDesc').textContent = t.pricingDesc;
+
+        document.getElementById('planStarterName').textContent = t.planStarterName;
+        document.getElementById('planStarterDesc').textContent = t.planStarterDesc;
+        document.querySelector('.pricing-card:not(.popular) .price').innerHTML = t.planStarterPrice;
+
+        document.getElementById('planProName').textContent = t.planProName;
+        document.getElementById('planProDesc').textContent = t.planProDesc;
+        document.querySelector('.pricing-card.popular .price').innerHTML = t.planProPrice;
+
+        document.querySelector('[data-feat="s1"]').textContent = t.featS1;
+        document.querySelector('[data-feat="s2"]').textContent = t.featS2;
+        document.querySelector('[data-feat="s3"]').textContent = t.featS3;
+        document.querySelector('[data-feat="s4"]').textContent = t.featS4;
+
+        document.querySelector('[data-feat="p1"]').textContent = t.featP1;
+        document.querySelector('[data-feat="p2"]').textContent = t.featP2;
+        document.querySelector('[data-feat="p3"]').textContent = t.featP3;
+        document.querySelector('[data-feat="p4"]').textContent = t.featP4;
 
         // Footer
         document.querySelector('.footer-brand p').textContent = t.footerDesc;
@@ -580,6 +648,87 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(feedbackMsg);
         e.target.reset();
     });
+
+    // -------------------------------------------------------------
+    // PayPal Smart Payment Buttons (SDK integration)
+    // -------------------------------------------------------------
+    function initPayPalButtons() {
+        if (typeof paypal === 'undefined') {
+            console.warn('PayPal SDK is not loaded yet.');
+            return;
+        }
+
+        // Render Starter Plan Button ($49.00 USD)
+        paypal.Buttons({
+            style: {
+                shape: 'rect',
+                color: 'silver',
+                layout: 'vertical',
+                label: 'pay'
+            },
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        description: "ClinicAI - Plan Starter (1 Mes)",
+                        amount: {
+                            currency_code: "USD",
+                            value: "49.00"
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert(currentLang === 'es' 
+                        ? '¡Pago completado con éxito por ' + details.payer.name.given_name + '! Bienvenido a ClinicAI.'
+                        : 'Payment successfully completed by ' + details.payer.name.given_name + '! Welcome to ClinicAI.');
+                    window.location.href = "dashboard.html";
+                });
+            },
+            onError: function(err) {
+                console.error('PayPal Starter Button Error: ', err);
+            }
+        }).render('#paypal-button-container-starter');
+
+        // Render Professional Plan Button ($99.00 USD)
+        paypal.Buttons({
+            style: {
+                shape: 'rect',
+                color: 'gold',
+                layout: 'vertical',
+                label: 'pay'
+            },
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        description: "ClinicAI - Plan Professional (1 Mes)",
+                        amount: {
+                            currency_code: "USD",
+                            value: "99.00"
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert(currentLang === 'es' 
+                        ? '¡Pago completado con éxito por ' + details.payer.name.given_name + '! Bienvenido al Plan Professional.'
+                        : 'Payment successfully completed by ' + details.payer.name.given_name + '! Welcome to the Professional Plan.');
+                    window.location.href = "dashboard.html";
+                });
+            },
+            onError: function(err) {
+                console.error('PayPal Pro Button Error: ', err);
+            }
+        }).render('#paypal-button-container-pro');
+    }
+
+    // Initialize PayPal Buttons
+    if (typeof paypal !== 'undefined') {
+        initPayPalButtons();
+    } else {
+        window.addEventListener('load', initPayPalButtons);
+    }
 
     // -------------------------------------------------------------
     // Initial Setup

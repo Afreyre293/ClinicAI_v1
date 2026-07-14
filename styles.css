@@ -857,3 +857,102 @@ input[type="range"]::-webkit-slider-thumb:hover {
         padding: 4rem 0;
     }
 }
+
+/* ==========================================================================
+   Pricing Section Styles
+   ========================================================================== */
+.section-pricing {
+    position: relative;
+    z-index: 10;
+}
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.pricing-card {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+.pricing-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 242, 254, 0.4);
+    box-shadow: 0 12px 40px 0 rgba(0, 242, 254, 0.1);
+}
+.pricing-card.popular {
+    border-color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 242, 254, 0.08);
+}
+.pricing-card.popular::before {
+    content: "POPULAR";
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--color-primary);
+    color: #060a14;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+}
+.pricing-card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+.pricing-card .plan-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    min-height: 48px;
+}
+.pricing-card .price {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 1.5rem 0;
+    color: var(--text-primary);
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+.pricing-card .price span {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+.pricing-card .features-list {
+    list-style: none;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 1;
+}
+.pricing-card .features-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+.paypal-btn-container {
+    width: 100%;
+    margin-top: auto;
+    min-height: 45px;
+    z-index: 1;
+}
+
+@media(max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .pricing-card {
+        padding: 2rem;
+    }
+}
